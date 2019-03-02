@@ -10,6 +10,10 @@ import XCTest
 @testable import Deliverable
 
 class TestHelpers {
+    enum Errors: Error {
+        case generic
+    }
+    
     public static func actionThatShouldNotBeCalled() -> Deliverable.Action {
         return Deliverable.Action(name: #function, callback: { (_) -> Deliverable.Control in
             XCTFail("This action should not be called")
