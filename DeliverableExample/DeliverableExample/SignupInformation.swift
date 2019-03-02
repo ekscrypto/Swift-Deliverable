@@ -13,4 +13,3 @@ struct SignupInformation {
     var name: String?
     var emailAddress: String?
 }
-
