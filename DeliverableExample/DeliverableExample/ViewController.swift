@@ -7,14 +7,33 @@
 //
 
 import UIKit
+import Deliverable
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    @IBOutlet weak var nameLabel: UILabel?
+    @IBOutlet weak var emailLabel: UILabel?
+    @IBOutlet weak var allDoneLabel: UILabel?
+    
+    private var gatherSignupInformation: GatherSignupInformation?
+
+    @IBAction func startSignupProcess(_: Any?) {
+        beginSignupProcess()
     }
 
-
+    private func beginSignupProcess() {
+        gatherSignupInformation = GatherSignupInformation(from: self, onCompletion: { (signupInformation) in
+            self.nameLabel?.text = signupInformation.name
+            self.emailLabel?.text = signupInformation.emailAddress
+            self.unhideAllLabels()
+        })
+        try? gatherSignupInformation?.resume()
+    }
+    
+    private func unhideAllLabels() {
+        nameLabel?.isHidden = false
+        emailLabel?.isHidden = false
+        allDoneLabel?.isHidden = false
+    }
 }
 

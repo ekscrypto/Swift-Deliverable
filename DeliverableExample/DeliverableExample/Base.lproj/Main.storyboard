@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,13 +13,59 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DeliverableExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your name is..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyk-KH-gem">
+                                <rect key="frame" x="27" y="86" width="112" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your email is..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOp-L4-gET">
+                                <rect key="frame" x="27" y="115" width="110.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All done!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8s-wn-aPW">
+                                <rect key="frame" x="27" y="144" width="67" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hv4-iA-QUh">
+                                <rect key="frame" x="27" y="48" width="139" height="30"/>
+                                <state key="normal" title="Create user account"/>
+                                <connections>
+                                    <action selector="startSignupProcess:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZTY-mB-dMn"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="G8s-wn-aPW" firstAttribute="leading" secondItem="hv4-iA-QUh" secondAttribute="leading" id="GMt-7i-CTH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hv4-iA-QUh" secondAttribute="trailing" constant="10" id="IAG-vr-ZfY"/>
+                            <constraint firstItem="Gyk-KH-gem" firstAttribute="top" secondItem="hv4-iA-QUh" secondAttribute="bottom" constant="8" id="J98-nF-eJT"/>
+                            <constraint firstItem="sOp-L4-gET" firstAttribute="leading" secondItem="hv4-iA-QUh" secondAttribute="leading" id="OZq-86-A8Q"/>
+                            <constraint firstItem="sOp-L4-gET" firstAttribute="top" secondItem="Gyk-KH-gem" secondAttribute="bottom" constant="8" id="Odh-W7-xsf"/>
+                            <constraint firstItem="hv4-iA-QUh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="27" id="ReM-EQ-Pxt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="G8s-wn-aPW" secondAttribute="trailing" constant="10" id="avm-ra-jZa"/>
+                            <constraint firstItem="G8s-wn-aPW" firstAttribute="top" secondItem="sOp-L4-gET" secondAttribute="bottom" constant="8" id="cGm-YR-8vi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sOp-L4-gET" secondAttribute="trailing" constant="10" id="fb6-gF-0U4"/>
+                            <constraint firstItem="Gyk-KH-gem" firstAttribute="leading" secondItem="hv4-iA-QUh" secondAttribute="leading" id="fob-fa-0R7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Gyk-KH-gem" secondAttribute="trailing" constant="10" id="tDJ-5j-3V9"/>
+                            <constraint firstItem="hv4-iA-QUh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="28" id="vgb-9M-zB1"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="allDoneLabel" destination="G8s-wn-aPW" id="OXG-Pv-gsE"/>
+                        <outlet property="emailLabel" destination="sOp-L4-gET" id="2U6-ig-WuK"/>
+                        <outlet property="nameLabel" destination="Gyk-KH-gem" id="FeF-qf-XuM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
