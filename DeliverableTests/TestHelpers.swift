@@ -23,13 +23,13 @@ class TestHelpers {
     
     public static func actionWithControl(
         control: Deliverable.Control,
-        expectation: XCTestExpectation,
-        additionalAction: (() -> Void)? = nil)
+        expectation: XCTestExpectation? = nil,
+        additionalAction: ((_: Deliverable) -> Void)? = nil)
         -> Deliverable.Action
     {
-        return Deliverable.Action(name: #function, callback: { (_) -> Deliverable.Control in
-            expectation.fulfill()
-            additionalAction?()
+        return Deliverable.Action(name: #function, callback: { (deliverable) -> Deliverable.Control in
+            expectation?.fulfill()
+            additionalAction?(deliverable)
             return control
         })
     }
@@ -47,16 +47,34 @@ class TestHelpers {
             expectation: waitActionWasCalled)
         
         let allActions = [waitAction] + otherActions
-        let flow = Deliverable(actions: allActions)
+        let deliverable = Deliverable(actions: allActions)
         
-        XCTAssertNoThrow(try flow.resume())
-        return flow
+        XCTAssertNoThrow(try deliverable.resume())
+        return deliverable
     }
     
     public static func deliverableInEndedState() -> Deliverable {
         let deliverable = Deliverable(actions: [])
         XCTAssertNoThrow(try deliverable.resume())
+        XCTAssertEqual(deliverable.status, .ended)
         return deliverable
     }
-    
+
+    public static func deliverableInEndedByDecisionState() -> Deliverable {
+        let endAction = self.actionWithControl(control: .end)
+        let deliverable = Deliverable(actions: [endAction])
+        XCTAssertNoThrow(try deliverable.resume())
+        XCTAssertEqual(deliverable.status, .endedByDecision)
+        return deliverable
+    }
+
+    public static func deliverableInEndedByExceptionState() -> Deliverable {
+        let endAction = self.actionWithControl(control: .endWithException) { (deliverable) in
+            deliverable.error = Errors.generic
+        }
+        let deliverable = Deliverable(actions: [endAction])
+        XCTAssertNoThrow(try deliverable.resume())
+        XCTAssertEqual(deliverable.status, .endedByException)
+        return deliverable
+    }
 }

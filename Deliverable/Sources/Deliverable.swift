@@ -53,27 +53,27 @@ public class Deliverable {
         self.actions = actions
     }
 
-    public func resume(asyncDecision: Control? = nil) throws {
-        lock.lock()
+    public func resume(
+        asyncDecision: Control? = nil)
+        throws -> Void
+    {
+        if lock.try() == false {
+            throw Errors.alreadyExecuting
+        }
+        defer {
+            lock.unlock()
+        }
         let endedStates: [Status] = [.ended, .endedByException, .endedByDecision]
         guard false == endedStates.contains(status) else {
-            lock.unlock()
             throw Errors.ended
         }
-
+        
         if status == .waitingForAsyncDecision, asyncDecision == nil {
-            lock.unlock()
             throw Errors.expectedAsyncDecision
         }
         
         if asyncDecision != nil, status != .waitingForAsyncDecision {
-            lock.unlock()
             throw Errors.unexpectedAsyncDecision
-        }
-        
-        if status != .initialized, status != .waitingForAsyncDecision {
-            lock.unlock()
-            throw Errors.alreadyExecuting
         }
         
         if let decision = asyncDecision {
@@ -88,20 +88,19 @@ public class Deliverable {
                 status = .endedByException
             }
             if decision != .nextAction {
-                lock.unlock()
                 return
             }
         }
-        
         status = .inProgress
+
         while nextAction < actions.count {
-            let flowAction = actions[nextAction]
+            let action = actions[nextAction]
             nextAction += 1
             
             do {
-                let decision = try flowAction.callback(self)
+                let decision = try action.callback(self)
                 logs.append(Log(
-                    actionName: flowAction.name,
+                    actionName: action.name,
                     decision: decision))
                 
                 switch decision {
@@ -115,21 +114,18 @@ public class Deliverable {
                     status = .endedByException
                 }
                 if decision != .nextAction {
-                    lock.unlock()
                     return
                 }
             } catch {
                 logs.append(Log(
-                    actionName: flowAction.name,
+                    actionName: action.name,
                     decision: .endWithException))
                 
                 self.error = error
                 status = .endedByException
-                lock.unlock()
                 throw error
             }
         }
         status = .ended
-        lock.unlock()
     }
 }
