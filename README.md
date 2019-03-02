@@ -1,3 +1,5 @@
+[![Build Status](https://app.bitrise.io/app/0fa9c7ca8367f13f/status.svg?token=aGb2fMHwzqG1oT5ZPVHzIw&branch=master)](https://app.bitrise.io/app/0fa9c7ca8367f13f)
+
 # Swift-Deliverable
 Highly re-usable class to easily define chain of sync/async actions that must be executed to produce a deliverable object
 
