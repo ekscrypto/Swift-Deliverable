@@ -12,6 +12,7 @@
 		789525682228DF4500857EC9 /* Deliverable.h in Headers */ = {isa = PBXBuildFile; fileRef = 7895255A2228DF4500857EC9 /* Deliverable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		789525972228E11100857EC9 /* Deliverable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789525962228E11100857EC9 /* Deliverable.swift */; };
 		78C26F78222A4378004C27B7 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C26F77222A4378004C27B7 /* TestHelpers.swift */; };
+		78C26F84222A6F20004C27B7 /* Deliverable+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C26F83222A6F20004C27B7 /* Deliverable+Actions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		789525672228DF4500857EC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		789525962228E11100857EC9 /* Deliverable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deliverable.swift; sourceTree = "<group>"; };
 		78C26F77222A4378004C27B7 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		78C26F83222A6F20004C27B7 /* Deliverable+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deliverable+Actions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				789525962228E11100857EC9 /* Deliverable.swift */,
+				78C26F83222A6F20004C27B7 /* Deliverable+Actions.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				789525972228E11100857EC9 /* Deliverable.swift in Sources */,
+				78C26F84222A6F20004C27B7 /* Deliverable+Actions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

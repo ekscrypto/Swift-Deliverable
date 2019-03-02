@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Deliverable {
+open class Deliverable {
     public enum Control {
         case nextAction
         case waitForAsyncDecision
@@ -30,6 +30,7 @@ public class Deliverable {
         case alreadyExecuting
         case expectedAsyncDecision
         case ended
+        case failedAdaptingGeneric
     }
     
     public struct Log {
@@ -37,9 +38,11 @@ public class Deliverable {
         let decision: Control
     }
     
+    public typealias ActionCallback = ((_ deliverable: Deliverable) throws -> Control)
+    
     public struct Action {
         let name: String
-        let callback: ((_ deliverable: Deliverable) throws -> Control)
+        let callback: ActionCallback
     }
     
     private let actions: [Action]
