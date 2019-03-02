@@ -1,0 +1,6 @@
+disabled_rules:
+  - redundant_void_return
+opt_in_rules:
+  - single_test_class
+excluded:
+  - Pods

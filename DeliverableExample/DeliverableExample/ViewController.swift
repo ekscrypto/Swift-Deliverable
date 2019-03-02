@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var emailLabel: UILabel?
     @IBOutlet weak var allDoneLabel: UILabel?
-    
+
     private var gatherSignupInformation: GatherSignupInformation?
 
     @IBAction func startSignupProcess(_: Any?) {
@@ -29,11 +29,10 @@ class ViewController: UIViewController {
         })
         try? gatherSignupInformation?.resume()
     }
-    
+
     private func unhideAllLabels() {
         nameLabel?.isHidden = false
         emailLabel?.isHidden = false
         allDoneLabel?.isHidden = false
     }
 }
-
